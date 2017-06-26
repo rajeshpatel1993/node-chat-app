@@ -8,7 +8,7 @@
     <title>Chat Room</title>
 
     <!-- Bootstrap -->
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!--<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">-->
     <link href="css/style.css" rel="stylesheet">
 
 
@@ -19,37 +19,38 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body>
+<body class="chat">
+
+<div class="chat__sidebar">
+    <h3>Users</h3>
+    <div id="users"></div>
+</div>
+
+<div class="chat__main">
+
+    <ol id="messages" class="chat__messages">
+
+    </ol>
+
+    <div class="chat__footer">
+    <form id="message-form">
+
+            <input type="text"  id="message" name="message" placeholder="Message" autofocus autocomplete="off">
 
 
-<div class="container">
-    <div class="well center">
-        Welcome to the chat app
-    </div>
+        <button type="submit" class="">Send</button>
+    </form>
 
-    <div class="messagesdiv">
-        <ol id="messages">
+        <button id="send-location" class="">Send Location</button>
 
-        </ol>
-    </div>
-    <div class="formcontainer">
-
-        <form id="message-form">
-            <div class="form-group">
-
-                <input type="text" class="form-control" id="message" name="message" placeholder="Message">
-            </div>
-
-            <button type="submit" class="btn btn-default">Send</button>
-        </form>
-        <br/>
-<button id="send-location" class="btn btn-primary">Send Location</button>
     </div>
 </div>
+
 
 <script type="text/javascript" src="socket.io/socket.io.js"></script>
 <script type="text/javascript" src="js/libs/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/libs/moment.js"></script>
 <script src="js/index.js"></script>
 </body>
 </html>
