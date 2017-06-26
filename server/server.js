@@ -13,7 +13,7 @@ var server = http.createServer(app);
 var io = socketIO(server);
 
 const {generateMessage} = require('./utils/message');
-
+const {generateLocationMessage} = require('./utils/message');
 io.on('connection',(socket)=>{
 
 
@@ -29,13 +29,7 @@ io.on('connection',(socket)=>{
     socket.broadcast.emit('newMessage',generateMessage('Admin','New user joined'));
 
 
-    // socket.broadcast.emit('newMessage',{
-    //     from:message.from,
-    //     text:message.text,
-    //     createdAt:new Date().getTime()
-    // });
-
-
+   
     socket.on('createMessage', function (message,callback){
         console.log('createMessage', message);
 
@@ -46,6 +40,11 @@ io.on('connection',(socket)=>{
         callback('This is from server');
     });
 
+    socket.on('createLocationMessage',(coords)=>{
+        io.emit("newLocationMessage",generateLocationMessage('Admin',coords.latitude,coords.longitude));
+
+
+    });
 
     socket.on('disconnect',()=>{
        console.log(`User was disconnected`);
